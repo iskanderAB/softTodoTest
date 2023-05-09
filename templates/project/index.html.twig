@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Project index{% endblock %}
+
+{% block body %}
+        <div class="container-fluid p-4">
+            <form name="filterForm" method="post">
+                <div class="d-flex justify-content-between  filter-project w-100">
+                    <div style="width: 25%">
+                        <div class="filter-container">
+                            <select class="select-lang w-100" name="name" data-placement="test">
+                                <option selected disabled value="">Project name</option>
+                                {% for name in names %}
+                                <option value="{{ name.name }}">{{ name.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div style="width: 20%" >
+                        <div class="filter-container">
+                            <select class="select-lang w-100" name="status">
+                                <option selected disabled>Status project</option>
+                                <option value="inProgress">In progress</option>
+                                <option value="done">Done</option>
+                                <option value="blocked">Blocked</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="width: 50%">
+                        <div class="filter-container">
+                            <input class="input-filter w-100" name="fileName" placeholder="File name or url">
+                        </div>
+                    </div>
+                    <div style="width: auto">
+                        <button class="btn btn-secondary btn-filter" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+                                <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div style="margin-top: 5rem;">
+                {% for row in projects|batch(4) %}
+                    <div class="d-flex justify-content-between mt-5">
+                        {% for project in row  %}
+                            <div class="card text-center" style="width: 23vw; height: 20rem;">
+                                <img class="card-img-top w-100 h-50" style="cursor: pointer" onclick="window.location.replace('{{ path('app_project_show',{'id':project.id}) }}')" src="{{ asset("uploads/images/"~project.image) }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ project.title }}</h5>
+                                    <a href="{{ path('app_project_edit',{'id': project.id}) }}" class="btn btn-edit m-auto text-dark "> <span class="icon"></span> Edit project</a>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between">
+                                    <span> time .. </span><span>{{ project.numberOfTasks }} tasks</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>no records found</p>
+                {% endfor %}
+            </div>
+            <a href="{{ path('app_project_new') }}">Create new</a>
+    </div>
+{% endblock %}

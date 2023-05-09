@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Project{% endblock %}
+
+{% block body %}
+    <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row d-flex justify-content-center ">
+            <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-start">
+                <div class="card">
+                    <div class="card-header">
+                        Edit project
+                    </div>
+                    <div class="card-body">
+                        {{ include('project/_form.html.twig', {'button_label': 'Update'}) }}
+                        {{ include('project/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

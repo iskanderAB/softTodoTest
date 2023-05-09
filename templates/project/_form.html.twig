@@ -1,0 +1,51 @@
+{{ form_start(form) }}
+    <div class="row mt-3">
+        <div class="col-6">
+            <label>
+                Title <span class="text-danger"> *</span>
+            </label>
+            {{ form_widget(form.title, {'attr': {'class': 'form-control mt-2'}}) }}
+        </div>
+        <div class="col-6">
+            <label>
+                File name <span class="text-danger"> *</span>
+            </label>
+            {{ form_widget(form.filename, {'attr': {'class': 'form-control mt-2'}}) }}
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-6">
+            <label>
+                Number of Tasks <span class="text-danger"> *</span>
+            </label>
+            {{ form_widget(form.numberOfTasks, {'attr': {'class': 'form-control mt-2'}}) }}
+        </div>
+        <div class="col-3">
+            <label>
+                Status <span class="text-danger"> *</span>
+            </label>
+            {{ form_widget(form.status, {'attr': {'class': 'form-control mt-2'}}) }}
+        </div>
+        <div class="row mt-3">
+            <div class="col-8">
+                <label>
+                    Description <span class="text-danger"> *</span>
+                </label>
+                {{ form_widget(form.description, {'attr': {'class': 'form-control mt-2', 'rows': '8'}}) }}
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-4">
+                <label>
+                    Image <span class="text-danger"> * </span>
+                </label>
+                {{ form_widget(form.image, {'attr': {'class': 'form-control mt-2'}}) }}
+            </div>
+        </div>
+    </div>
+
+
+
+    <button class="btn btn-primary mt-2 float-start">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

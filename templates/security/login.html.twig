@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="row">
+    <div class="container-login">
+        <form method="post">
+            {% if error %}
+                <div class="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+            <div class="logo-login"></div>
+            <input type="email" placeholder="Your Email" value="{{ last_username }}" name="email" id="inputEmail"
+                   class="input-login" autocomplete="email" required autofocus>
+            <input type="password" placeholder="Your Password" name="password" id="inputPassword" class="input-login"
+                   autocomplete="current-password" required>
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            >
+            <button class="btn-login" type="submit">
+                Sign in
+            </button>
+        </form>
+    </div>
+    <img src="{{ asset('images/devops-team.png') }}" class="dev-team-image" alt="dev-team-image" >
+</div>
+</body>
+</html>
